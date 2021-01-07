@@ -25,6 +25,7 @@ export default function Index({ subscription }) {
             <HeroPost
               title={heroPost.title}
               coverImage={heroPost.coverImage}
+              
               date={heroPost.date}
               slug={heroPost.slug}
               excerpt={heroPost.excerpt}
