@@ -110,3 +110,7 @@ export default function Post({ subscription, preview }) {
     </Layout>
   );
 }
+
+export const config = {
+  unstable_runtimeJS: false
+};

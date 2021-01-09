@@ -18,3 +18,7 @@ export default function About() {
     </>
   );
 }
+
+export const config = {
+  unstable_runtimeJS: false
+};

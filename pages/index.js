@@ -92,3 +92,7 @@ export async function getStaticProps({ preview }) {
     },
   };
 }
+
+export const config = {
+  unstable_runtimeJS: false
+};
