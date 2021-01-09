@@ -42,12 +42,6 @@ export async function getStaticProps({ params, preview = false }) {
               ...responsiveImageFragment
             }
           }
-          author {
-            name
-            picture {
-              url(imgixParams: {fm: jpg, fit: crop, w: 100, h: 100, sat: -100})
-            }
-          }
         }
 
         morePosts: allPosts(orderBy: date_DESC, first: 2, filter: {slug: {neq: $slug}}) {
@@ -58,12 +52,6 @@ export async function getStaticProps({ params, preview = false }) {
           coverImage {
             responsiveImage(imgixParams: {fm: jpg, fit: crop, w: 2000, h: 1000 }) {
               ...responsiveImageFragment
-            }
-          }
-          author {
-            name
-            picture {
-              url(imgixParams: {fm: jpg, fit: crop, w: 100, h: 100, sat: -100})
             }
           }
         }
@@ -104,17 +92,20 @@ export default function Post({ subscription, preview }) {
   return (
     <Layout preview={preview}>
       <Head>{renderMetaTags(metaTags)}</Head>
-      <Container>
-        <article>
-          <PostHeader
-            title={post.title}
-            coverImage={post.coverImage}
-            date={post.date}
-          />
-          <PostBody content={post.content} />
-        </article>
 
-        {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+      <Container>
+        <div className="content mb-12 md:mb-24">
+          <article className="mb-12 md:mb-24">
+            <PostHeader
+              title={post.title}
+              coverImage={post.coverImage}
+              date={post.date}
+            />
+            <PostBody content={post.content} />
+          </article>
+
+          {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+        </div>
       </Container>
     </Layout>
   );

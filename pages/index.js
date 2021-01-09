@@ -1,9 +1,9 @@
 import Head from "next/head";
 import { renderMetaTags, useQuerySubscription } from "react-datocms";
 import Container from "../components/container";
-import HeroPost from "../components/hero-post";
 import Layout from "../components/layout";
 import MoreStories from "../components/more-stories";
+import PostPreview from "../components/post-preview";
 import { request } from "../lib/datocms";
 import { metaTagsFragment, responsiveImageFragment } from "../lib/fragments";
 
@@ -20,18 +20,24 @@ export default function Index({ subscription }) {
     <>
       <Layout preview={subscription.preview}>
         <Head>{renderMetaTags(metaTags)}</Head>
+        
         <Container>
-          {heroPost && (
-            <HeroPost
-              title={heroPost.title}
-              coverImage={heroPost.coverImage}
-              
-              date={heroPost.date}
-              slug={heroPost.slug}
-              excerpt={heroPost.excerpt}
-            />
-          )}
-          {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+          <div className="mb-12 md:mb-24">
+            {heroPost && (
+              <div className="mb-8 md:mb-12">
+                <PostPreview
+                  featured
+                  title={heroPost.title}
+                  coverImage={heroPost.coverImage}
+                  date={heroPost.date}
+                  slug={heroPost.slug}
+                  excerpt={heroPost.excerpt}
+                />
+              </div>
+            )}
+
+            {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+          </div>
         </Container>
       </Layout>
     </>

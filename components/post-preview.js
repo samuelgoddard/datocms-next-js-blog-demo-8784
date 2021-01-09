@@ -1,32 +1,44 @@
 import Date from '../components/date'
-import CoverImage from './cover-image'
+import Button from '../components/button'
+import { Image } from 'react-datocms'
 import Link from 'next/link'
 
 export default function PostPreview({
   title,
   coverImage,
+  featured,
   date,
   excerpt,
   slug,
 }) {
   return (
     <div>
-      <div className="mb-5">
-        <CoverImage
-          slug={slug}
-          title={title}
-          responsiveImage={coverImage.responsiveImage}
-        />
+      <Link as={`/posts/${slug}`} href="/posts/[slug]">
+        <a aria-label={title} className="block mb-2">
+          <Image
+            data={{...coverImage.responsiveImage, alt: `Cover Image for ${title}` }}
+            className="w-full"
+          />
+        </a>
+      </Link>
+      <div className="border-b mb-3">
+        <h3 className={featured ? `text-4xl mb-0 font-bold` : `text-xl mb-0 font-bold`}>
+          <Link href="/posts/[slug]">
+            <a className="hover:underline">{title}</a>
+          </Link>
+        </h3>
+        <div className="text-sm mb-2">
+          <Date dateString={date} />
+        </div>
       </div>
-      <h3 className="text-3xl mb-3 leading-snug">
-        <Link as={`/posts/${slug}`} href="/posts/[slug]">
-          <a className="hover:underline">{title}</a>
-        </Link>
-      </h3>
-      <div className="text-lg mb-4">
-        <Date dateString={date} />
-      </div>
-      <p className="text-lg leading-relaxed mb-4">{excerpt}</p>
+      { !featured && (
+        <>
+          <p className="mb-4">{excerpt}</p>
+          <Button link={`/posts/${slug}`}>
+            Read More
+          </Button>
+        </>
+      )}
     </div>
   )
-}
+s}

@@ -2,9 +2,9 @@ import Container from './container'
 
 export default function Footer() {
   return (
-    <footer className="bg-accent-1 border-t border-accent-2 py-6 md:py-8">
+    <footer className="border-t py-6">
       <Container>
-        <h3>Site Footer</h3>
+        <span className="text-sm">Site Footer</span>
       </Container>
     </footer>
   )

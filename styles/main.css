@@ -1,0 +1,31 @@
+/* purgecss start ignore */
+@tailwind base;
+@tailwind components;
+/* purgecss end ignore */
+
+@tailwind utilities;
+
+/* Custom */
+body {
+  @apply font-sans antialiased;
+}
+  
+.content > p {
+  @apply mb-5;
+
+  &:last-of-type {
+    @apply mb-0;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply p-0 mb-6;
+}
+  
+h1 {
+  @apply text-4xl;
+}
+  
+h2 {
+  @apply text-3xl;
+}
